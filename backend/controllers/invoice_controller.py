@@ -1,21 +1,21 @@
 from fastapi import APIRouter, UploadFile, File
-from backend.services.embedding_service import generate_embedding
-from backend.services.vector_db_service import store_embedding_data, search_similar_data
+from services.embedding_service import generate_embedding
+from services.vector_db_service import store_embedding_data, search_similar_data
 
 import asyncio
 import os
 import tempfile
 
 # Agents
-from backend.agents.invoice_agent import invoice_agent
-from backend.agents.po_agent import po_agent
-from backend.agents.fraud_agent import fraud_agent
+from agents.invoice_agent import invoice_agent
+from agents.po_agent import po_agent
+from agents.fraud_agent import fraud_agent
 
 # Services
-from backend.services.db_service import save_invoice, get_all_invoices
+from services.db_service import save_invoice, get_all_invoices
 
 # Utils
-from backend.utils.pdf_extractor import extract_text
+from utils.pdf_extractor import extract_text
 
 router = APIRouter()
 

@@ -1,4 +1,4 @@
-from backend.db.mongo import invoice_collection
+from db.mongo import invoice_collection
 from datetime import datetime
 from bson import ObjectId
 

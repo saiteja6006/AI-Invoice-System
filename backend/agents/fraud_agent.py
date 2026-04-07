@@ -1,6 +1,6 @@
 import re
-from backend.services.llm_service import ask_llm_async
-from backend.utils.response_parser import parse_llm_response
+from services.llm_service import ask_llm_async
+from utils.response_parser import parse_llm_response
 
 async def fraud_agent(data):
 

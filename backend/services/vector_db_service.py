@@ -2,7 +2,15 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 import uuid
 
-client = QdrantClient(path="qdrant_data")
+# client = QdrantClient(path="qdrant_data")
+def store_embedding_data(*args, **kwargs):
+    print("Qdrant disabled in deployment")
+    return
+
+
+def search_similar_data(*args, **kwargs):
+    print("Qdrant disabled in deployment")
+    return []
 
 COLLECTION_NAME = "invoices"
 
