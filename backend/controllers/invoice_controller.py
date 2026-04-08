@@ -117,3 +117,8 @@ async def process_invoice(file: UploadFile = File(...)):
 @router.get("/invoices")
 def fetch_invoices():
     return get_all_invoices()
+
+@router.get("/test")
+def test():
+    print("✅ TEST ENDPOINT HIT")
+    return {"message": "test working"}
