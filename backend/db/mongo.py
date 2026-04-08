@@ -6,7 +6,7 @@ MONGO_URI = os.getenv("MONGO_URI")
 client = MongoClient(MONGO_URI)
 
 db = client["invoice_db"]
-collection = db["invoices"]
+invoice_collection = db["invoices"]
 
 # #Create connection
 # client = MongoClient("mongodb://localhost:27017/")
