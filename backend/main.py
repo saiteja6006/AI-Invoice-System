@@ -1,6 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
 from controllers.invoice_controller import router as invoice_router
-# from services.vector_db_service import init_collection
+from services.vector_db_service import init_collection
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -17,9 +17,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# @app.on_event("startup")
-# def startup_event():
-#     # init_collection(384)
-#     pass
+@app.on_event("startup")
+def startup_event():
+    init_collection(384)
 
 app.include_router(invoice_router)

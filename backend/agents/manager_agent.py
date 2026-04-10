@@ -8,7 +8,7 @@ def manager_agent(results):
                 "decision" : "HOLD",
                 "issues" : issues
             }   
-        return {
+    return {
             "decision" : "APPROVE",
             "issues" : []
         }

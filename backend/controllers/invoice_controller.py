@@ -1,6 +1,7 @@
 from fastapi import APIRouter, UploadFile, File
 from services.embedding_service import generate_embedding
 from services.vector_db_service import store_embedding_data, search_similar_data
+from agents.extraction_agent import extraction_agent
 
 import asyncio
 import os
@@ -59,11 +60,13 @@ async def process_invoice(file: UploadFile = File(...)):
             text = extract_text(temp_file_path)
             print("Extracted text length:", len(text))
 
+            extracted_data = await extraction_agent(text)
+             
             print("Running agents")
             results = await asyncio.gather(
-                invoice_agent(text),
-                po_agent(text),
-                fraud_agent(text),
+                invoice_agent(extracted_data),
+                po_agent(extracted_data),
+                fraud_agent(extracted_data),
                 return_exceptions=True  
             )
 
