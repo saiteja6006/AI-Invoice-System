@@ -13,17 +13,22 @@ COLLECTION_NAME = "invoices"
 
 
 def init_collection(vector_size: int):
-    collections = client.get_collections().collections
-    names = [c.name for c in collections]
+    print("Connecting to Qdrant")
+    try:
+        collections = client.get_collections().collections
+        names = [c.name for c in collections]
+        print("Qdrant connected")
 
-    if COLLECTION_NAME not in names:
-        client.create_collection(
-            collection_name=COLLECTION_NAME,
-            vectors_config=VectorParams(
-                size=vector_size,
-                distance=Distance.COSINE
+        if COLLECTION_NAME not in names:
+             client.create_collection(
+                collection_name=COLLECTION_NAME,
+                 vectors_config=VectorParams(
+                    size=vector_size,
+                    distance=Distance.COSINE
             )
         )
+    except Exception as e:
+       print("Qdrant connection failed:", str(e))         
 
 
 def store_embedding_data(embedding, payload):
