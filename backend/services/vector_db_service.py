@@ -6,9 +6,7 @@ import os
 
 client = QdrantClient(
     url = os.getenv("QDRANT_URL"),
-    api_key= os.getenv("QDRANT_API_KEYS")
-    print("QDRANT URL:", os.getenv("QDRANT_URL"))
-    print("KEY LENGTH:", len(os.getenv("QDRANT_API_KEY") or ""))
+    api_key= os.getenv("QDRANT_API_KEYS"),
     timeout= 10,
     check_compatibility=False 
 )
@@ -18,6 +16,8 @@ COLLECTION_NAME = "invoices"
 
 def init_collection(vector_size: int):
     print("Connecting to Qdrant")
+    print("QDRANT URL:", os.getenv("QDRANT_URL"))
+    print("KEY LENGTH:", len(os.getenv("QDRANT_API_KEY") or ""))
     try:
         collections = client.get_collections().collections
         names = [c.name for c in collections]
