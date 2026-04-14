@@ -45,7 +45,12 @@ export function InvoiceUploader({ onSuccess }: InvoiceUploaderProps) {
       setIsUploading(true);
       setError(null);
       const result = await processInvoice(selectedFile);
-      onSuccess(result);
+
+    if (!result || !result.summary) {
+  throw new Error("Invalid response from server");
+   }
+
+onSuccess(result);
     } catch (uploadError) {
       setError(uploadError instanceof Error ? uploadError.message : "Upload failed.");
     } finally {

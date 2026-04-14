@@ -6,8 +6,15 @@ type InvoiceHistoryItem = {
   id?: string;
   created_at?: string;
   text_preview?: string;
+
   final_decision?: {
     decision?: string;
+  };
+
+  extracted_data?: {
+    invoice_number?: string;
+    amount?: number;
+    vendor?: string;
   };
 };
 

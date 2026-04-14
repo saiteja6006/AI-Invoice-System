@@ -1,25 +1,25 @@
 export interface AgentResult {
   agent: string;
-  status: string;
+  status: "pass" | "fail";
   reason: string;
 }
 
-export interface FinalDecision {
-  decision: string;
-  issues: AgentResult[];
-}
-
-export interface SimilarInvoice {
-  score: number;
-  payload: {
-    text_preview?: string;
-    decision?: string;
-  };
-}
-
 export interface ProcessInvoiceResponse {
-  text_preview: string;
-  agent_results: AgentResult[];
-  final_decision: FinalDecision;
-  similar_invoices: SimilarInvoice[];
+  summary: {
+    decision: string;
+    duplicate_detected: boolean;
+  };
+
+  invoice: {
+    invoice_number?: string;
+    amount?: number;
+    vendor?: string;
+    po_number?: string;
+  };
+
+  validation: AgentResult[];
+
+  similar_invoices: string[];
+
+  text_preview?: string;
 }
